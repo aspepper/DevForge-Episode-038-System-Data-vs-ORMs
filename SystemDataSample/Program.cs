@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite; //Optimized Library for Cross-Platform Data Access intead System.Data
+﻿// Optimized Library for Cross-Platform Data Access intead System.Data
+using Microsoft.Data.Sqlite;
 
 namespace SystemDataSample;
 

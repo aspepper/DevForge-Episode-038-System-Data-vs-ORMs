@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.Sqlite;  // Optimized Library for Cross-Platform Data Access intead System.Data
+﻿// Optimized Library for Cross-Platform Data Access intead System.Data
+using Microsoft.Data.Sqlite;
 
 namespace SystemDataWithORMEFSample;
 
@@ -15,6 +16,21 @@ internal class Program
             Console.WriteLine($"Id: {customer.Id}, Nome: {customer.Name}");
         }
 
+        /* Customer c = new()
+        {
+            Id = 3,
+            Name = "New User"
+        };
+
+        context.Add(c);
+        context.SaveChanges(); */
+
+        /* 
+        Environment.SpecialFolder.LocalApplicationData = 
+        Special Data Folder 
+            in Windows: c:\Users\<username>\AppData\
+            in MacOS: /Users/alexpimenta/Library/Application Support/
+        */
         var folder = Environment.SpecialFolder.LocalApplicationData;
         string path = Environment.GetFolderPath(folder);
         string dbPath = Path.Join(path, "dbsample-systemData-ORM-EF.db");
