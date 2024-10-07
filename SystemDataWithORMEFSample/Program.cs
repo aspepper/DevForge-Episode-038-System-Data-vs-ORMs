@@ -9,6 +9,7 @@ internal class Program
         using var context = new Context();
         List<Customer> customerList = [.. context.Customer];
 
+        Console.WriteLine("Records read by ORM EF Core");
         foreach (var customer in customerList)
         {
             Console.WriteLine($"Id: {customer.Id}, Nome: {customer.Name}");
@@ -20,27 +21,6 @@ internal class Program
         var dbConnection = new SqliteConnection("Data Source=" + dbPath); // Linux and Mac OS
         // var dbConnection = new SQLiteConnection("Data Source=" + dbPath + ";Version=3;"); // Windows
 
-        if (!File.Exists(dbPath))
-        {
-            // SQLiteConnection.CreateFile(dbPath);  // Windows
-
-            string sql = "Create Table Customer (Id int, Name varchar(50))";
-            dbConnection.Open();
-            SqliteCommand command = new(sql, dbConnection); // Linux and Mac OS
-            // SQLiteCommand command = new(sql, dbConnection); // Windows
-            command.ExecuteNonQuery();
-
-            sql = "Insert into Customer (Id, Name) values (1, 'Alex Pimenta')";
-            command = new(sql, dbConnection); // Linux and Mac OS
-            // command = new(sql, dbConnection); // Windows
-            command.ExecuteNonQuery();
-
-            sql = "Insert into Customer (Id, Name) values (1, 'Arthur Gregorio Pimenta')";
-            command = new(sql, dbConnection); // Linux and Mac OS
-            // command = new(sql, dbConnection); // Windows
-            dbConnection.Close();
-        }
-
         string consultaSQL = "SELECT Id, Name FROM Customer";
 
         SqliteCommand comando = new(consultaSQL, dbConnection); // Linux and Mac OS
@@ -50,6 +30,7 @@ internal class Program
         SqliteDataReader leitor = comando.ExecuteReader(); // Linux and Mac OS
         // SQLiteDataReader leitor = comando.ExecuteReader(); // Windows
 
+        Console.WriteLine("Records read by System.Data ou Microsoft.Data");
         while (leitor.Read())
         {
             Console.WriteLine($"Id: {leitor["Id"]}, Name: {leitor["Name"]}");

@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C#: SystemDataSample",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/SystemDataSample/SystemDataSample.csproj",
+            "launchConfigurationId": "TargetFramework=;SystemDataSample"
+        },
+        {
+            "name": "C#: ORMEntityFrameworkSample",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/ORMEntityFrameworkSample/ORMEntityFrameworkSample.csproj",
+            "launchConfigurationId": "TargetFramework=;ORMEntityFrameworkSample"
+        },
+        {
+            "name": "C#: SystemDataWithORMEFSample",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/SystemDataWithORMEFSample/SystemDataWithORMEFSample.csproj",
+            "launchConfigurationId": "TargetFramework=;SystemDataWithORMEFSample"
+        }
+    ]
+}

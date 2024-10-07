@@ -23,6 +23,7 @@ namespace SystemDataWithORMEFSample.Migrations
                     table.PrimaryKey("PK_Customer", x => x.Id);
                 });
 
+            // Create records for to be read
             migrationBuilder.Sql(
                 "INSERT INTO Customer(Id, Name) Values(1, 'Alex Pimenta')"
                 );
