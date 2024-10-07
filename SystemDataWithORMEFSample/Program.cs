@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;  // Optimized Library for Cross-Platform Data Access intead System.Data
 
 namespace SystemDataWithORMEFSample;
 
@@ -18,18 +18,16 @@ internal class Program
         var folder = Environment.SpecialFolder.LocalApplicationData;
         string path = Environment.GetFolderPath(folder);
         string dbPath = Path.Join(path, "dbsample-systemData-ORM-EF.db");
-        var dbConnection = new SqliteConnection("Data Source=" + dbPath); // Linux and Mac OS
-        // var dbConnection = new SQLiteConnection("Data Source=" + dbPath + ";Version=3;"); // Windows
+        var dbConnection = new SqliteConnection("Data Source=" + dbPath);
 
         string consultaSQL = "SELECT Id, Name FROM Customer";
 
-        SqliteCommand comando = new(consultaSQL, dbConnection); // Linux and Mac OS
-        // SQLiteCommand comando = new(consultaSQL, dbConnection); // Windows
+        SqliteCommand comando = new(consultaSQL, dbConnection);
         dbConnection.Open();
 
-        SqliteDataReader leitor = comando.ExecuteReader(); // Linux and Mac OS
-        // SQLiteDataReader leitor = comando.ExecuteReader(); // Windows
+        SqliteDataReader leitor = comando.ExecuteReader();
 
+        Console.WriteLine(" ");
         Console.WriteLine("Records read by System.Data ou Microsoft.Data");
         while (leitor.Read())
         {

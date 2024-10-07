@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.Sqlite; // Linux and Mac OS
-// using System.Data.SQLite; // Windows
+﻿using Microsoft.Data.Sqlite; //Optimized Library for Cross-Platform Data Access intead System.Data
 
 namespace SystemDataSample;
 
@@ -10,39 +9,31 @@ internal class Program
         var folder = Environment.SpecialFolder.LocalApplicationData;
         string path = Environment.GetFolderPath(folder);
         string dbPath = Path.Join(path, "dbsample-systemData.db");
-        var dbConnection = new SqliteConnection("Data Source=" + dbPath); // Linux and Mac OS
-        // var dbConnection = new SQLiteConnection("Data Source=" + dbPath + ";Version=3;"); // Windows
+        var dbConnection = new SqliteConnection("Data Source=" + dbPath);
 
         if (!File.Exists(dbPath))
         {
-            // SQLiteConnection.CreateFile(dbPath);  // Windows
-
             string sql = "Create Table Customer (Id int, Name varchar(50))";
             dbConnection.Open();
-            SqliteCommand command = new(sql, dbConnection); // Linux and Mac OS
-            // SQLiteCommand command = new(sql, dbConnection); // Windows
+            SqliteCommand command = new(sql, dbConnection);
             command.ExecuteNonQuery();
 
             sql = "Insert into Customer (Id, Name) values (1, 'Alex Pimenta')";
-            command = new(sql, dbConnection); // Linux and Mac OS
-            // command = new(sql, dbConnection); // Windows
+            command = new(sql, dbConnection);
             command.ExecuteNonQuery();
 
             sql = "Insert into Customer (Id, Name) values (2, 'Arthur Gregorio Pimenta')";
-            command = new(sql, dbConnection); // Linux and Mac OS
-            // command = new(sql, dbConnection); // Windows
+            command = new(sql, dbConnection);
             command.ExecuteNonQuery();
             dbConnection.Close();
         }
 
         string consultaSQL = "SELECT Id, Name FROM Customer";
 
-        SqliteCommand comando = new(consultaSQL, dbConnection); // Linux and Mac OS
-        // SQLiteCommand comando = new(consultaSQL, dbConnection); // Windows
+        SqliteCommand comando = new(consultaSQL, dbConnection);
         dbConnection.Open();
 
-        SqliteDataReader leitor = comando.ExecuteReader(); // Linux and Mac OS
-        // SQLiteDataReader leitor = comando.ExecuteReader(); // Windows
+        SqliteDataReader leitor = comando.ExecuteReader();
 
         while (leitor.Read())
         {
