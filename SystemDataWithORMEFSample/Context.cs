@@ -2,11 +2,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SystemDataWithORMEFSample;
 
-public class Context: DbContext
+public partial class Context : DbContext
 {
-    public DbSet<Customer> Customer { get; set; }
+    private string DbPath { get; }
 
-    public string DbPath { get; }
+    public virtual DbSet<Customer> Customer { get; set; }
 
     public Context()
     {
@@ -19,4 +19,13 @@ public class Context: DbContext
     // special "local" folder for your platform.
     protected override void OnConfiguring(DbContextOptionsBuilder options)
         => options.UseSqlite($"Data Source={DbPath}");
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Name).IsRequired().HasMaxLength(50);
+        });
+    }
 }

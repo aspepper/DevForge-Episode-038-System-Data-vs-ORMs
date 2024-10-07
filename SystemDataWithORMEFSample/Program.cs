@@ -16,21 +16,47 @@ internal class Program
             Console.WriteLine($"Id: {customer.Id}, Nome: {customer.Name}");
         }
 
+        // Example adding a new record
         /* Customer c = new()
         {
-            Id = 3,
+            Id = 4,
             Name = "New User"
         };
-
         context.Add(c);
-        context.SaveChanges(); */
+        context.SaveChanges();
+        Console.WriteLine("Record 4 inserted by EF Core"); */
 
-        /* 
+        // Example updating record Id 4
+        /* var c = context.Customer.Where(d => d.Id == 4).First();
+        c.Name = "New User Updated";
+        context.SaveChanges();
+        Console.WriteLine("Record 4 updated by EF Core"); */
+
+        // Example deleting record Id 4
+        /* var c = context.Customer.FirstOrDefault(c => c.Id == 4);
+        if (c != null)
+        {
+            context.Customer.Attach(c);
+            context.Customer.Remove(c);
+            context.SaveChanges();
+        }
+        Console.WriteLine("Record 4 deleted by EF Core"); */
+
+        // Another example deleting record Id 4
+        /* var c = context.Customer.FirstOrDefault(c => c.Id == 4);
+        if (c != null)
+        {
+            context.Entry(c).State = Microsoft.EntityFrameworkCore.EntityState.Deleted;
+            context.SaveChanges();
+        }
+        Console.WriteLine("Record 4 deleted by EF Core"); */
+
+        /******************************************************************** 
         Environment.SpecialFolder.LocalApplicationData = 
         Special Data Folder 
             in Windows: c:\Users\<username>\AppData\
             in MacOS: /Users/alexpimenta/Library/Application Support/
-        */
+        ********************************************************************/
         var folder = Environment.SpecialFolder.LocalApplicationData;
         string path = Environment.GetFolderPath(folder);
         string dbPath = Path.Join(path, "dbsample-systemData-ORM-EF.db");

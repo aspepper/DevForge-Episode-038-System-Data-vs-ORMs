@@ -3,7 +3,6 @@
 ** This is to be run in specifiques projects, not at all.
 
 dotnet add package Microsoft.Data.SQLite
-dotnet add package System.Data.SQLite
 dotnet add package System.Data.Linq
 dotnet add package Microsoft.EntityFrameworkCore.SQLite
 dotnet add package Microsoft.EntityFrameworkCore.Design
